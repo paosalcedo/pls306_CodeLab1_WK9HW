@@ -13,6 +13,7 @@ public class RocketBoots : BasicBoots {
 			rocket.transform.position = pos;
 			rocket.transform.position = new Vector3 (pos.x + offsetX, pos.y + offsetY, pos.z + offsetZ);
 			uses -= 1;
+			print("Number of uses remaining: " + uses);
 		}
 	}
 
