@@ -41,8 +41,6 @@ public class TimeKeeper : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
 	{
-		Debug.Log("BestTime = " + BestTime);
-		Debug.Log("bestTime = " + bestTime);
  		if (instance == null) {
 			instance = this;
 			DontDestroyOnLoad (this);

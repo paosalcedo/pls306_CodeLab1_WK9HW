@@ -49,7 +49,7 @@ public class FPSController : MonoBehaviour {
 	void FixedUpdate()
 	{
 		MovePlayer ();
-		PlayFallSound();
+		CheckIfFalling();
 //		CheckIfGrounded();
 	}
 //		**** ORIGINAL FPS CONTROLLER MOVE CODE (place this in FixedUpdate()***
@@ -149,25 +149,26 @@ public class FPSController : MonoBehaviour {
 //Kills the player on impact if falling velocity is greater than user-determined maximum.
 	
 
-	void PlayFallSound ()
+	void CheckIfFalling ()
 	{
 		if (rb.velocity.y < maxFallVelocity) {
 			GameObject scream = GameObject.Find("ScreamSoundHolder");
 			scream.SendMessage("PlaySound");
+			SendDeathMessage();
 		}
 	}
 
 	public bool canFallToDeath;
 //kills player when falling too fast. 
-	void OnTriggerEnter(Collider coll){
-		if (canFallToDeath == true && coll.tag == "Ground" && rb.velocity.y < maxFallVelocity) {
-			Destroy (gameObject);
-			SendDeathMessage ();
-			Debug.Log ("DON'T FALL THAT FAST!");
-			GameObject scream = GameObject.Find("ScreamSoundHolder");
-			scream.SendMessage("PlaySound");
-		}
-	}
+//	void OnTriggerEnter(Collider coll){
+//		if (canFallToDeath == true && coll.tag == "Ground" && rb.velocity.y < maxFallVelocity) {
+//			Destroy (gameObject);
+//			SendDeathMessage ();
+//			Debug.Log ("DON'T FALL THAT FAST!");
+//			GameObject scream = GameObject.Find("ScreamSoundHolder");
+//			scream.SendMessage("PlaySound");
+//		}
+//	}
 
 
 	void OnCollisionStay (Collision coll) {

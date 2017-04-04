@@ -25,10 +25,14 @@ public class LivesKeeper : MonoBehaviour {
 		} else {
 			Destroy(gameObject);
 		}
+		
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void Update ()
+	{
+		if (Input.GetKeyDown (KeyCode.L)) {
+			Debug.Log (Lives);
+		}
 	}
 }

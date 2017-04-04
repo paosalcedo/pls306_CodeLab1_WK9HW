@@ -158,8 +158,8 @@ public class LevelLoader : MonoBehaviour {
 				}
 
 				if (line [xPos] == '|') { 
-					yPos -= 4;
-					offsetZ += 17;
+					yPos -= 2;
+					offsetZ += 33;
 				}
 
 			}

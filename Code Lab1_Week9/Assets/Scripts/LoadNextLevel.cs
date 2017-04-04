@@ -20,13 +20,14 @@ public class LoadNextLevel : MonoBehaviour {
 	void Update () {
 	}
 
-	void OnTriggerExit(Collider coll){
+	void OnTriggerEnter(Collider coll){
 		if (coll.tag == "Player") {
 			//saves finish time as string.
 			yourTime = TimeKeeper.instance.Timer.ToString("##" + "|");
 			//Saves finish time as float.
 			floatYourTime = TimeKeeper.instance.Timer;    
-			Invoke ("SendLoadMessage", delay);
+//			Invoke ("SendLoadMessage", delay);
+			Debug.Log("LEVEL COMPLETE!");
 		}
 	}
 
