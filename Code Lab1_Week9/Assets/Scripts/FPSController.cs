@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class FPSController : MonoBehaviour {
 
+	public BootType sphereBoots;
+	public BootType bridgeBoots;
+	int bootAmmo;
+	float offsetX;
+	float offsetY;
+	float offsetZ;
 	public float speed = 10.0f;
 	public float airControl = 0.1f;
 	public float gravity = 10.0f;
@@ -46,6 +52,7 @@ public class FPSController : MonoBehaviour {
 
 	void Update(){
 		BootAbility();
+		BootManager();
 	}
 
 	void FixedUpdate ()
@@ -130,7 +137,7 @@ public class FPSController : MonoBehaviour {
 	void BootAbility(){
 	//boot ability
 		if (Input.GetKeyDown (KeyCode.LeftControl)) {
-			GetComponent<BasicBoots>().ActivateBoots(transform.position, 0f, -1f, 0f);
+			GetComponent<BasicBoots>().ActivateBoots(transform.position, offsetX, offsetY, offsetZ, bootAmmo);
 		}
 	}
 
@@ -165,5 +172,38 @@ public class FPSController : MonoBehaviour {
 	}
 
 
+	void BootManager ()
+	{
+		if (Input.GetKeyDown (KeyCode.Alpha1)) {
+			sphereBoots = new BootType();
+			sphereBoots.name = "Sphere Boots";
+			sphereBoots.bootOffsetY = -1f;
+			
+			offsetY = sphereBoots.bootOffsetY;
+			print(sphereBoots.name);
 
+			sphereBoots.maxAbilityUseCount = 2;
+			bootAmmo = sphereBoots.maxAbilityUseCount;
+			print("Number of uses: " + bootAmmo);
+			
+			gameObject.AddComponent<BasicBoots>();
+			Destroy(GetComponent<RocketBoots>());
+		}
+
+		if (Input.GetKeyDown (KeyCode.Alpha2)) {
+			bridgeBoots = new BootType();
+			bridgeBoots.name = "Bridge Boots";
+			bridgeBoots.bootOffsetY = -1f;
+
+			offsetY = bridgeBoots.bootOffsetY;
+			print (bridgeBoots.name);
+
+			bridgeBoots.maxAbilityUseCount = 1;
+			bootAmmo = bridgeBoots.maxAbilityUseCount;
+			print("Number of uses: " + bootAmmo);
+
+			gameObject.AddComponent<RocketBoots>();
+			Destroy(GetComponent<BasicBoots>());
+		}
+	}
 }
